@@ -1,0 +1,19 @@
+<!--左侧菜单-->
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!--ion-nav组件当做主要的内容区域-->
+
+<ion-nav #myNav [root]="rootPage" #mycontent swipeBackEnabled="false"></ion-nav>

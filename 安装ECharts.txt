@@ -1,0 +1,6 @@
+
+1.npm install echarts --save
+
+2.因为TypeScript使用了静态类型，所以我们需要描述将要使用并引入的功能 npm install @types/theLibraryName --save
+
+ npm install @types/echarts --save

@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ListDetails page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let item of messageDetils">
+    
+    <div class="rj-message-wrap" *ngIf="!item.isFromeMe">
+      <img src="assets/img/avatar-han.png" class="rj-head-pic">
+      <span class="rj-triangle-left"></span>
+      <p class="rj-message">{{item.content}}</p>
+    </div>
+
+    <div class="rj-message-wrap" *ngIf="item.isFromeMe">
+      <img src="assets/img/avatar-leia.png" class="rj-head-pic-right">
+      <span class="rj-triangle-right"></span>
+      <p class="rj-message-right">{{item.content}}</p>
+    </div>
+
+  </div>
+</ion-content>
+<ion-footer no-shadow>
+  <ion-toolbar align-title="left" class="bar-light">
+    <div class="rj-footer-btn-wrap">
+        <button ion-button outline rj-footer-btn-left>
+        </button>
+    </div>
+    <label class="item item-input rj-footer-input">
+        <textarea msd-elastic [(ngModel)]="send_content"></textarea>
+        <div class="buttons">
+            <button ion-button outline class="rj-footer-btn"></button>
+        </div>
+    </label>
+    <div class="rj-footer-btn-wrap">
+        <div class="buttons" ng-show="!send_content || send_content === ''">
+            <button ion-button outline class="rj-footer-btn-left">
+            </button>
+        </div>
+        <div class="rj-send-button" ng-hide="!send_content || send_content === ''">
+            <p>发送</p>
+        </div>
+    </div>
+</ion-toolbar>
+</ion-footer>

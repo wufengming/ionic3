@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>ECharts</h2>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 350px;height:300px;" my-auto-fit-layout></div>
+
+<!--进入高德地图-->
+  <p>
+    <button ion-button icon-left (click)='enterMap()'>
+      <ion-icon name='home'></ion-icon>
+      地图
+    </button>
+  </p>
+</ion-content>

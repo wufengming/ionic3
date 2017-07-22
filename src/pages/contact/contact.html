@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      通讯录
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="royal" icon-only showWhen="ios,windows" (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+        New
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home">
+  <ion-list class="rj-list" style="margin-bottom: 0px;">
+    <ion-item class="rj-item">
+      <div class="rj-contacts-pic rj-orange-bgc">
+        <i class="ion-person-add"></i>
+      </div>
+      <h2>新的朋友</h2>
+    </ion-item>
+    <ion-item class="rj-item">
+      <div class="rj-contacts-pic rj-green-bgc">
+        <i class="ion-person-stalker"></i>
+      </div>
+      <h2>群聊</h2>
+    </ion-item>
+    <ion-item class="rj-item">
+      <div class="rj-contacts-pic rj-blue-bgc">
+        <i class="ion-ios-pricetag"></i>
+      </div>
+      <h2>标签</h2>
+    </ion-item>
+    <ion-item class="rj-item">
+      <div class="rj-contacts-pic rj-blue-bgc">
+        <i class="ion-person-add"></i>
+      </div>
+      <h2>公众号</h2>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <div *ngFor="let item of contacts">
+      <div class="rj-contacts-index-bar">{{item.Letter}}</div>
+      <ion-item *ngFor="let contact of item.content" (click)="viewItem(contact)">
+        <h2>{{contact.firstName}} {{contact.lastName}}</h2>
+        <p>{{contact.phone}}</p>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
