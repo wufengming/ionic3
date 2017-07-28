@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { TabsPage } from '../tabs/tabs';
+//import { TabsPage } from '../tabs/tabs';
 import { Slide } from "./../../model/IslideModel";
 /**
  * Generated class for the Start page.
@@ -9,6 +9,7 @@ import { Slide } from "./../../model/IslideModel";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+//@ IonicPage 装饰器的name属性的引用，它默认为类名作为字符串
 @IonicPage({
   name:'start'
 })
@@ -47,7 +48,7 @@ export class StartPage {
   }
 
   startApp() {
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.push('tabs');
 
     // this.local.set('isStart',true);
 

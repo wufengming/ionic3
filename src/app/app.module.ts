@@ -4,12 +4,13 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //页面要加这里
 //import { AboutModule } from '../pages/about/about.module';
 //import { ContactModule } from '../pages/contact/contact.module';
 //import { HomeModule } from '../pages/home/home.module';
-import { TabsModule } from '../pages/tabs/tabs.module';
+//import { TabsModule } from '../pages/tabs/tabs.module';
 //import { StartModule } from '../pages/start/start.module';
 //import { ChatModule } from '../pages/chat/chat.module';
 //import { ListDetailsModule } from '../pages/list-details/list-details.module';
@@ -22,9 +23,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from "../providers/login-service";
 import { HttpService } from "../providers/http-service";
 import { StorageService } from "../providers/storage-service";
+import { TabsService } from '../providers/tabs-service';
+
+
+
+//组件
+//import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 //指令
-import { AutoFitLayout } from "../components/auto-fit-layout/auto-fit-layout";
+
+
 
 /**
  *declarations（声明一下这个模块内部成员）：本模块中拥有的视图类。angular 有三种视图类：Components(组件)、Directives(指令)、Pipes(管道);
@@ -33,27 +41,21 @@ import { AutoFitLayout } from "../components/auto-fit-layout/auto-fit-layout";
  *imports：导入其他module，其它module暴露的出的Components、Directives、Pipes等可以在本module的组件中被使用。
  *bootstrap：根组件,此处声明当模块启动加载的时候同时执行启动加载的组件，这些组件会自动添加到entryComponents中。
  *entryCompoenents: 声明在模块定义时进行编译的组件，当模块加载的时候回生成ComponentFactory并保存在ComponentFactoryResolver，使用ComponentFactoryResolver创建组件的时候应该现在此处进行声明。
-*/
-
-
-/**
- * 
- * imports：导入其他module，其它module暴露的出的Components、Directives、Pipes等可以在本module的组件中被使用。
- * declarations：模块内部Components/Directives/Pipes的列表，声明一下这个模块内部成员
- * exports：用来控制将哪些内部成员暴露给外部使用。
- * providers：服务提供者，主要用来定义服务。指定应用程序的根级别需要使用的service。
- * bootstrap：通常是app启动的根组件，一般只有一个component
- * entryCompoenents: 不会再模板中被引用到的组件
+    declarations: [],   // 用到的组件，指令，管道
+    providers: [],      // 依赖注入服务 
+    imports: [],        // 导入需要的模块
+    exports: [],        // 导出的模块，跨模块交流
+    entryComponents: [] // 需提前编译好的模块
+    bootstrap: []       // 设置根组件
 */
 @NgModule({
   declarations: [
-    MyApp,
-    AutoFitLayout
+    MyApp
   ],
   imports: [
     BrowserModule,
+    //BrowserAnimationsModule,           //..引入animation动画模块 Cannot read property 'prototype' of undefined
     HttpModule,
-    TabsModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '返回',
       iconMode: 'ios',
@@ -61,7 +63,7 @@ import { AutoFitLayout } from "../components/auto-fit-layout/auto-fit-layout";
       modalLeave: 'modal-slide-out',
       tabsPlacement: 'bottom',
       pageTransition: 'ios-transition',
-      tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
+      tabsHideOnSubPages: 'true'         //所有子页面tabs隐藏(一般app都做了)
     }),
     IonicStorageModule.forRoot() //LocalStore
   ],
@@ -74,7 +76,8 @@ import { AutoFitLayout } from "../components/auto-fit-layout/auto-fit-layout";
     HttpService,
     StorageService,
     Storage,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler }, 
+    TabsService
   ]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
-import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
-
+import { Directive, ElementRef, Renderer, HostListener, OnInit, OnDestroy } from '@angular/core';
 /**
  * Generated class for the AutoFitLayout directive.
  *
@@ -7,9 +6,9 @@ import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
  * for more info on Angular Directives.
  */
 @Directive({
-  selector: '[my-auto-fit-layout]' // Attribute selector
+  selector: '[auto-fit-layout]' // Attribute selector
 })
-export class AutoFitLayout {
+export class AutoFitLayout implements OnInit, OnDestroy {
 
   /**
    * 
@@ -26,7 +25,14 @@ export class AutoFitLayout {
     this._renderer = renderer;
     console.log('Hello AutoFitLayout Directive');
     //因为ionic的默认padding宽度是16
-    renderer.setElementStyle(element.nativeElement, 'width', `${(document.body.clientWidth - 32).toString()}px`);
+    //renderer.setElementStyle(element.nativeElement, 'width', `${(document.body.clientWidth - 32).toString()}px`);
+  }
+
+  ngOnInit() {
+    console.log('Directive ngOnInit');
+  }
+  ngOnDestroy() {
+    console.log('Directive ngOnInit');
   }
 
   @HostListener('mouseenter')

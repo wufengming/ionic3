@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController } from 'ionic-angular';
+import { IonicPage,NavController,NavParams } from 'ionic-angular';
 
 @IonicPage({
   name: 'about'
@@ -10,38 +10,56 @@ import { IonicPage,NavController } from 'ionic-angular';
 })
 export class AboutPage {
     img_data = [{
+    id:"1",
     src: "assets/img/1.jpg"
   }, {
+     id:"2",
     src: "assets/img/2.jpg"
   }, {
+     id:"3",
     src: "assets/img/3.jpg"
   }, {
+     id:"4",
     src: "assets/img/4.jpg"
   }, {
+     id:"5",
     src: "assets/img/5.jpg"
   }, {
+     id:"6",
     src: "assets/img/6.jpg"
   }, {
+    id:"7",
     src: "assets/img/7.jpg"
   }, {
+     id:"8",
     src: "assets/img/8.jpg"
   }, {
+     id:"9",
     src: "assets/img/9.jpg"
   }, {
+     id:"10",
     src: "assets/img/10.jpg"
   }, {
+     id:"11",
     src: "assets/img/11.jpg"
   }, {
+     id:"12",
     src: "assets/img/12.jpg"
   }, {
+     id:"13",
     src: "assets/img/13.jpg"
   }, {
+     id:"14",
     src: "assets/img/14.jpg"
   }, {
+     id:"15",
     src: "assets/img/15.jpg"
-  }]
+  }];
 
-  constructor(public navCtrl: NavController) {
+  private bigImage:boolean=false;
+  private Url:string;
+
+  constructor(public navCtrl: NavController,public navParams: NavParams) {
 
   }
 
@@ -100,5 +118,23 @@ export class AboutPage {
     }
     this.getNode();
     setTimeout(() => { infiniteScroll.complete() }, 1000);
+  }
+
+  //点击图片
+  shouBigImage(image){
+    // console.log(image);
+    // this.navCtrl.push('about-detail',{
+    //   id:image.id,
+    //   src:image.src
+    // });
+
+    this.bigImage=true;
+    this.Url=image.src;
+
+  }
+
+  hideBigImage(){
+    this.bigImage=false;
+    this.Url='';
   }
 }

@@ -3,9 +3,9 @@ import { Platform, Nav,IonicApp, ToastController, MenuController, Keyboard } fro
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-import { TabsPage } from '../pages/tabs/tabs';
+//import { TabsPage } from '../pages/tabs/tabs';
 
-import { StartPage } from '../pages/start/start';
+//import { StartPage } from '../pages/start/start';
 
 /**
  * app.component.ts 应用程序根组件
@@ -128,8 +128,8 @@ export class MyApp {
       this.registerBackButtonAction();//注册返回按键事件
 
       this.pages = [
-        { title: 'StartPage', component: StartPage },
-        { title: 'TabsPage', component: TabsPage }
+        { title: 'StartPage', component: 'start' },
+        { title: 'TabsPage', component: 'tabs' }
       ];
     });
   }

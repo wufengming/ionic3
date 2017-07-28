@@ -2,7 +2,7 @@ import { Component, Injectable, ViewChild } from '@angular/core';
 import { Tabs ,IonicPage } from 'ionic-angular';
 //import { AboutPage } from '../about/about';
 //import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
 //import { ChatPage } from '../chat/chat';
 //import { LoginPage } from '../login/login';
 
@@ -23,7 +23,7 @@ export class TabsPage {
   constructor() {
     this.tab1Root = 'chat';
     this.tab2Root = 'about'; //此处改成了字符串
-    this.tab3Root = 'contact';
+    this.tab3Root = 'home';
     this.tab4Root = 'login';
 
   }

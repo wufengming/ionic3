@@ -19,7 +19,7 @@ import { UserInfoData } from "../../model/UserInfoData";
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [LoginService]
+  providers: [LoginService]  // 注入服务
 })
 export class LoginPage {
   local: Storage;
@@ -49,32 +49,32 @@ export class LoginPage {
   login(user, _event) {
     _event.preventDefault();//该方法将通知 Web 浏览器不要执行与事件关联的默认动作
 
-    //this.loadDefault();
+    this.loadDefault();
 
-    this.loginSer.login(user).then(data => {
+    // this.loginSer.login(user).then(data => {
 
-      //alert(JSON.stringify(data));
-      if (data.Result.ID > 0)//登录成功
-      {
-        this.storageSer.write('UserData', data.Result);
+    //   //alert(JSON.stringify(data));
+    //   if (data.Result.ID > 0)//登录成功
+    //   {
+    //     this.storageSer.write('UserData', data.Result);
 
-        //测试写缓存
-        let ss = this.storageSer.read<UserInfoData>('UserData');
-        console.log(ss);
+    //     //测试写缓存
+    //     let ss = this.storageSer.read<UserInfoData>('UserData');
+    //     console.log(ss);
 
-        alert("登陆成功!");
-      }
-      else {
-        let toast = this.toastCtrl.create({
-          message: '用户名或密码错误.',
-          duration: 3000,
-          position: 'middle',
-          showCloseButton: true,
-          closeButtonText: '关闭'
-        });
-        toast.present();
-      }
-    });
+    //     alert("登陆成功!");
+    //   }
+    //   else {
+    //     let toast = this.toastCtrl.create({
+    //       message: '用户名或密码错误.',
+    //       duration: 3000,
+    //       position: 'middle',
+    //       showCloseButton: true,
+    //       closeButtonText: '关闭'
+    //     });
+    //     toast.present();
+    //   }
+    // });
 
   }
 
@@ -97,10 +97,17 @@ export class LoginPage {
       showBackdrop: false //是否显示遮罩层
     });
     loading.present();// 弹出load框
+    let item = 0;
+    setInterval(() => {
+      item+=10;
+      loading.data.content = item;
+    }, 100)
 
     setTimeout(() => {
       loading.dismiss();
-    }, 3000);
+    }, 1000);
+  
+
     // 上面这段代码先是在按下按钮1000毫秒之后挑战页面，再在3000毫秒之后关闭loading框
     // 但是因为设置了切换页面之后关闭loading框，因此在切换页面后则关闭loading框
   }

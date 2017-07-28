@@ -14,6 +14,6 @@
 declare module '*';
 
 /**
- * 高德JS的声明
+ * 高德JS的声明 (导入第三方js库)
 */
 declare var AMap;

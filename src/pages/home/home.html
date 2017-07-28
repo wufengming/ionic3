@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>ECharts</h2>
+  
   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-  <div id="main" style="width: 350px;height:300px;" my-auto-fit-layout></div>
+  <div id="main" style="width: 350px;height:300px;"></div>
 
 <!--进入高德地图-->
   <p>
@@ -16,4 +16,19 @@
       地图
     </button>
   </p>
+  <p>
+    <button ion-button icon-left (click)='enterFileUpload()'>
+      <ion-icon name='home'></ion-icon>
+      上传图片
+    </button>
+  </p>
+  <h2 pefixHighlight>ECharts</h2>
+  <div>{{ ALL| my:["Josh Morony","something"] }}  </div>
+
+  <!--<input [ngModel]="ALL| uppercase" (ngModelChange)="userName=$event" type="text">-->
+
+  <flash-card>
+      <div class="flash-card-front">flash</div>
+      <div class="flash-card-back">are cool</div>
+  </flash-card>             
 </ion-content>
