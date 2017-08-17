@@ -1,5 +1,5 @@
 import { Component, ViewChild, Host } from '@angular/core';
-import { Platform, Nav,IonicApp, ToastController, MenuController, Keyboard } from 'ionic-angular';
+import { Platform, Nav,IonicApp, ToastController, MenuController, Keyboard,Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -32,6 +32,7 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private toastCtrl: ToastController,
+    private events: Events,
     public menu: MenuController,
     public storage: Storage) {
 
@@ -69,11 +70,11 @@ export class MyApp {
     // })
 
 
-     storage.ready().then(() => {
+     this.storage.ready().then(() => {
 
-       storage.set('isStart', false);
+       this.storage.set('isStart', false);
 
-       storage.get('isStart').then((val) => {
+       this.storage.get('isStart').then((val) => {
          console.log('isStart:', val);
        })
      });
@@ -100,7 +101,7 @@ export class MyApp {
       let activeVC = this.nav.getActive();
       let tabs = activeVC.instance.tabs;
       let activeNav = tabs.getSelected();
-      return activeNav.canGoBack() ? activeNav.pop() : window['AppMinimize'].minimize();
+      return activeNav.canGoBack() ? activeNav.pop() : window['AppMinimize'].minimize(); //this.showExit()
     }, 1);
   }
 
@@ -119,6 +120,7 @@ export class MyApp {
     }
   }
 
+  //应用启动开始加载事件
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

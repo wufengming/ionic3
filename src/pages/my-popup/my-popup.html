@@ -1,0 +1,45 @@
+<!--
+  Generated template for the MyPopupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>myPopup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  我是content,我要显示这个自定义的弹窗
+  <button ion-button full (click)="showMypopup('1')">显示自定义弹窗<button>
+</ion-content>
+
+<!--myPopup1-->
+  <!--我的遮罩层1-->
+<span *ngIf="showBackdrop1" class="backdropBar">   
+<ion-backdrop disable-activated role="presentation" (click)="backdrop('1')" ></ion-backdrop>
+<div class="MyPopup">
+<!--弹窗内容-->
+  <!--close 关闭弹出层  关闭按钮自定义-->
+  <div class="CloseBox">
+    <ul class="relate">
+      <li class="garden">
+        <span class="close" (click)="closeTap('1')"></span>
+        </li>
+    </ul>
+  </div>
+  <ion-scroll scrollY="true" class="popContent">
+    <!--content--说明：用scrol 可以向里面添加无限内容-->
+    <div >只想在弹窗窗口添加列表信息！</div>
+    <div >只想在弹窗窗口添加列表信息！</div>
+    <div >只想在弹窗窗口添加列表信息！</div>
+    <div >只想在弹窗窗口添加列表信息！</div>
+  　<!--content===end-->
+</ion-scroll>
+</div>
+</span>
+<!--myPopup1======end-->

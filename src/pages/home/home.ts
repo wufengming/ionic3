@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import ECharts from 'echarts';
 //import { MapPage } from '../map-page/map-page';
 import { AutoFitLayout } from "../../components/auto-fit-layout/auto-fit-layout";
@@ -20,7 +20,8 @@ export class HomePage {
   private name_data:any=["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"];
   private value_data:any=[5, 20, 36, 10, 10, 20];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+  public modalCtrl: ModalController) {
    
   }
 
@@ -68,6 +69,12 @@ export class HomePage {
 
   enterFileUpload(){
     this.navCtrl.push('FileUploadPage');
+  }
+
+  // ModalController 应用
+  presentProfileModal(){
+   let profileModal = this.modalCtrl.create('FileUploadPage', { userId: 8675309 });
+   profileModal.present();
   }
 
 }
