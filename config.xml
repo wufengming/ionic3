@@ -86,4 +86,5 @@
     <plugin name="cordova-sqlite-storage" spec="~2.0.4" />
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
     <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-plugin-themeablebrowser" spec="~0.2.17" />
 </widget>

@@ -1,15 +1,19 @@
 <ion-header>
-  <ion-navbar>
+  <!--在ios模式下，<ion-toolbar>会产生border,因此需要使用no-border,no-border-top和no-border-bottom来分别消除上下border-->
+  <ion-navbar style="opacity: 0.8" no-border-bottom color="primary">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  
+<ion-content fullscreen>
+  <!--padding   :
+      fullscreen:
+  -->
+
   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
   <div id="main" style="width: 350px;height:300px;"></div>
 
-<!--进入高德地图-->
+  <!--进入高德地图-->
   <p>
     <button ion-button icon-left (click)='enterMap()'>
       <ion-icon name='home'></ion-icon>
@@ -25,16 +29,38 @@
   <p>
     <button ion-button icon-left (click)='presentProfileModal()'>
       <ion-icon name='home'></ion-icon>
-       ModalController
+      ModalController
+    </button>
+  </p>
+  <p>
+    <button ion-button icon-left (click)='goBuy()'>
+      <ion-icon name='home'></ion-icon>
+      ThemeableBrowser插件
+    </button>
+  </p>
+  <p>
+    <button ion-button icon-left (click)='multiPicker()'>
+      <ion-icon name='home'></ion-icon>
+      Ion-Multi-Picker
     </button>
   </p>
   <h2 pefixHighlight>ECharts</h2>
-  <div>{{ ALL| my:["Josh Morony","something"] }}  </div>
+  <div>{{ ALL| my:["Josh Morony","something"] }}</div>
 
   <!--<input [ngModel]="ALL| uppercase" (ngModelChange)="userName=$event" type="text">-->
 
   <flash-card>
-      <div class="flash-card-front">flash</div>
-      <div class="flash-card-back">are cool</div>
-  </flash-card>             
+    <div class="flash-card-front">flash</div>
+    <div class="flash-card-back">are cool</div>
+  </flash-card>
+
+  <ion-products [products]="products"></ion-products>
+  <ion-row>
+    <ion-col class="nodata" text-center *ngIf="!hasmore">
+      没有商品啦 (^∇^*)
+    </ion-col>
+  </ion-row>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
