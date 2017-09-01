@@ -27,10 +27,10 @@ export class HttpService {
     url = Utils.formatUrl(url.startsWith('http') ? url : APP_SERVE_URL + url);
     this.optionsAddToken(options);
     return Observable.create(observer => {
-      this.nativeService.showLoading();
+      //this.nativeService.showLoading();
       console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
       this.http.request(url, options).timeout(REQUEST_TIMEOUT).subscribe(res => {
-        this.nativeService.hideLoading();
+        //this.nativeService.hideLoading();
         console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
         observer.next(res);
       }, err => {
@@ -129,20 +129,20 @@ export class HttpService {
    * @param err
    */
   private requestFailed(url: string, options: RequestOptionsArgs, err: Response): void {
-    this.nativeService.hideLoading();
-    console.log('%c 请求失败 %c', 'color:red', '', 'url', url, 'options', options, 'err', err);
-    if (err instanceof TimeoutError) {
-      this.nativeService.alert('请求超时,请稍后再试!');
-      return;
-    }
-    if (!this.nativeService.isConnecting()) {
-      this.nativeService.alert('请求失败，请连接网络');
-      return;
-    }
+    // this.nativeService.hideLoading();
+    // console.log('%c 请求失败 %c', 'color:red', '', 'url', url, 'options', options, 'err', err);
+    // if (err instanceof TimeoutError) {
+    //   this.nativeService.alert('请求超时,请稍后再试!');
+    //   return;
+    // }
+    // if (!this.nativeService.isConnecting()) {
+    //   this.nativeService.alert('请求失败，请连接网络');
+    //   return;
+    // }
     let msg = '请求发生异常';
     try {
       let result = err.json();
-      this.nativeService.alert(result.message || msg);
+      //this.nativeService.alert(result.message || msg);
     } catch (err) {
       let status = err.status;
       if (status === 0) {
@@ -152,7 +152,7 @@ export class HttpService {
       } else if (status === 500) {
         msg = '请求失败，服务器出错，请稍后再试';
       }
-      this.nativeService.alert(msg);
+      //this.nativeService.alert(msg);
       this.logger.httpLog(err, msg, {
         url: url,
         status: status
