@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController,NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
+//import {ViewerPicPage} from "../viewer-pic/viewer-pic";
 
 @IonicPage({
   name: 'about'
@@ -59,7 +60,9 @@ export class AboutPage {
   private bigImage:boolean=false;
   private Url:string;
 
-  constructor(public navCtrl: NavController,public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private modalCtrl: ModalController) {
 
   }
 
@@ -136,5 +139,15 @@ export class AboutPage {
   hideBigImage(){
     this.bigImage=false;
     this.Url='';
+  }
+
+  viewerPicture(index) {//照片预览
+    let picturePaths = [];
+    for (let img of this.img_data) {
+      picturePaths.push(img.src);
+    }
+
+    //懒加载 ViewerPicPage Swiper（照片预览）
+    this.modalCtrl.create('viewer-pic', {'initialSlide': index, 'picturePaths': picturePaths}).present();
   }
 }

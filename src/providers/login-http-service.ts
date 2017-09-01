@@ -12,7 +12,7 @@ import { UserInfoData } from "./../model/UserInfoData";  //model
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class HttpService {
+export class LoginHttpService {
   myInfoLocal: any;
   local: Storage;
 
@@ -54,7 +54,6 @@ export class HttpService {
         this.handleError(err);
       });
   }
-
   public httpPostWithAuth(body: any, url: string) {
 
     return this.myInfoLocal = this.local.getJson('UserInfo')
@@ -66,7 +65,6 @@ export class HttpService {
         return this.http.post(url, body, options).toPromise();
       });
   }
-
   private handleError(error: Response) {
     console.log(error);
     return Observable.throw(error.json().error || 'Server Error');

@@ -21,7 +21,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from "../providers/login-service";
-import { HttpService } from "../providers/http-service";
+import { LoginHttpService } from "../providers/login-http-service";
 import { StorageService } from "../providers/storage-service";
 import { TabsService } from '../providers/tabs-service';
 
@@ -85,7 +85,7 @@ class FundebugErrorHandler implements ErrorHandler {
     StatusBar,
     SplashScreen,
     LoginService,
-    HttpService,
+    LoginHttpService,
     StorageService,
     Storage,
     {provide: ErrorHandler, useClass: FundebugErrorHandler},

@@ -37,8 +37,6 @@ export class HomePage {
               public navParams: NavParams) {
 
   }
-
-
   //页面
   ngOnInit() {
     console.log('ionViewDidLoad home');
@@ -217,6 +215,11 @@ export class HomePage {
    */
   multiPicker(){
     this.navCtrl.push('multipicker');
+  }
+
+  //跳转到瀑布流图片
+  pageAbout(){
+    this.navCtrl.push('about');
   }
 
 }

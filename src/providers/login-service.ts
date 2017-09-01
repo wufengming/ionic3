@@ -3,8 +3,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { HttpService } from "./http-service";
 import { StorageService } from "./storage-service";
+import {LoginHttpService} from "./login-http-service";
 
 /*
   Generated class for the LoginService provider.
@@ -17,7 +17,7 @@ export class LoginService {
 
   API_URL = "http://192.168.6.201:8080/webapi/checkLogin/";
 
-  constructor(public http: Http, private httpService: HttpService, private storageService:StorageService) {
+  constructor(public http: Http, private httpService: LoginHttpService, private storageService:StorageService) {
     console.log('Hello LoginService Provider');
   }
 

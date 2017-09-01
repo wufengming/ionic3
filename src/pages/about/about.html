@@ -8,20 +8,20 @@
 
 <ion-content padding>
     <div id="container">
-        <div class="box" *ngFor="let image of img_data">
+        <div class="box" *ngFor="let image of img_data; let idx=index">
             <div class="box_img">
-               <img (click)="shouBigImage(image)"  src="{{image.src}}">
+               <img (click)="viewerPicture(idx)"  src="{{image.src}}">
             </div>
         </div>
     </div>
-    <div id="rightDisplay" *ngIf="bigImage" class="popover-backdrop"
+<!--    <div id="rightDisplay" *ngIf="bigImage" class="popover-backdrop"
          style="position: fixed;top: 0;left: 0;z-index: 10; width: 100%;height: 100%;"
          (click)="hideBigImage()">
       <img class="img-responsive"
            style="position: absolute;top: 10%;left: 50%;z-index: 10;display: block;margin-top: 18px;
             margin-left: -165px;height: 420px;width: 330px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);"
            src="{{Url}}"/>
-    </div>
+    </div>-->
     <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="circles" loadingText="正在加载...">
         </ion-infinite-scroll-content>

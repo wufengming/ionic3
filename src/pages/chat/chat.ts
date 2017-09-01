@@ -57,14 +57,14 @@ export class ChatPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Chat');
   }
-  //页面已经进入的时候  
+  //页面已经进入的时候
   ionViewDidEnter() {
 
   }
 
   //点击item的选项
   itemClick(event, item) {
-    this.navCtrl.push(ListDetailsPage, {
+    this.navCtrl.push('ListDetailsPage', {
       item: item
     });
   }

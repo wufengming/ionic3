@@ -120,9 +120,14 @@ export class MapPage {
   }
 
   showPosition(position) {
-    this.latitude = position.coords.latitude; //纬度   
-    this.longitude = position.coords.longitude; //经度   
+    this.latitude = position.coords.latitude; //纬度
+    this.longitude = position.coords.longitude; //经度
     console.log('纬度:' + this.latitude + ',经度:' + this.longitude);
+  }
+
+
+  popView(){
+    this.navCtrl.pop();
   }
 
 

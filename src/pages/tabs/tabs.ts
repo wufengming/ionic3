@@ -22,20 +22,20 @@ export class TabsPage {
 
   constructor() {
     this.tab1Root = 'chat';
-    this.tab2Root = 'about'; //此处改成了字符串
-    this.tab3Root = 'home';
+    this.tab2Root = 'home'; //此处改成了字符串
+    this.tab3Root = 'contact';
     this.tab4Root = 'login';
 
   }
 
-  //页面已经进入的时候  
-  ionViewDidEnter() {  
+  //页面已经进入的时候
+  ionViewDidEnter() {
     this.tabRef.select(0);
 
     this.tabRef.getByIndex(3).tabBadge = '4';
     this.tabRef.getByIndex(3).tabBadgeStyle = 'danger';
   }
-   
+
    //tab的点击chang事件没有触发
 
   selecttab4Root(tab){
