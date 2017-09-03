@@ -6,30 +6,37 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//页面要加这里
-//import { AboutModule } from '../pages/about/about.module';
-//import { ContactModule } from '../pages/contact/contact.module';
-//import { HomeModule } from '../pages/home/home.module';
-//import { TabsModule } from '../pages/tabs/tabs.module';
-//import { StartModule } from '../pages/start/start.module';
-//import { ChatModule } from '../pages/chat/chat.module';
-//import { ListDetailsModule } from '../pages/list-details/list-details.module';
-//import { LoginModule } from '../pages/login/login.module';
-//import { MapPageModule } from '../pages/map-page/map-page.module';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {AppVersion} from '@ionic-native/app-version';
+import {Camera} from '@ionic-native/camera';
+import {Toast} from '@ionic-native/toast';
+import {File} from '@ionic-native/file';
+import {Transfer} from '@ionic-native/transfer';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {ImagePicker} from '@ionic-native/image-picker';
+import {Network} from '@ionic-native/network';
+import {AppMinimize} from '@ionic-native/app-minimize';
 
 //服务要加这里
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from "../providers/login-service";
 import { LoginHttpService } from "../providers/login-http-service";
 import { StorageService } from "../providers/storage-service";
 import { TabsService } from '../providers/tabs-service';
+import {NativeService} from "../providers/NativeService";
+import {GlobalData} from "../providers/GlobalData";
+import {Utils} from "../providers/Utils";
+import {Logger} from "../providers/Logger";
+
+
+
 
 
 import * as fundebug from "fundebug-javascript";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 //常量
 import {ENABLE_FUNDEBUG, IS_DEBUG,FUNDEBUG_API_KEY,APPVERSION} from "../providers/Constants";
+
 
 
 fundebug.apikey = FUNDEBUG_API_KEY;
@@ -84,13 +91,26 @@ class FundebugErrorHandler implements ErrorHandler {
   providers: [
     StatusBar,
     SplashScreen,
+    AppVersion,
+    Camera,
+    Toast,
+    File,
+    Transfer,
+    InAppBrowser,
+    ImagePicker,
+    Network,
+    AppMinimize,
     LoginService,
     LoginHttpService,
     StorageService,
+    NativeService,
     Storage,
     {provide: ErrorHandler, useClass: FundebugErrorHandler},
     //{ provide: ErrorHandler, useClass: IonicErrorHandler },
-    TabsService
+    TabsService,
+    GlobalData,
+    Utils,
+    Logger
   ]
 })
 export class AppModule {

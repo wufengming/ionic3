@@ -1,4 +1,4 @@
-export const APPVERSION='0.1.0'
+export const APPVERSION='0.1.0';
 
 export const APP_SERVE_URL = 'http://88.128.18.144:8081/api/';
 
