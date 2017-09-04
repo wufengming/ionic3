@@ -6,7 +6,7 @@ import {GlobalData} from "./GlobalData";
 declare var fundebug;
 
 /**
- * Utils类存放和业务无关的公共方法
+ * Logger类存放和业务无关的公共方法
  * @description
  */
 @Injectable()

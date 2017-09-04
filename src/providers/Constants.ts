@@ -17,12 +17,12 @@ export const QUALITY_SIZE = 94;//图像压缩质量，范围为0 - 100
 export const REQUEST_TIMEOUT = 12000;//请求超时时间,单位为毫秒
 
 /*----------------------------------------fundebug-javascript----------------------------------------*/
-export const ENABLE_FUNDEBUG = false;//是否启用fundebug日志监控
+export const ENABLE_FUNDEBUG = true;//是否启用fundebug日志监控
 export const FUNDEBUG_API_KEY = 'e11b9e738d661cd1d709eb72c5422b831e657b4385951f194ab4485f9eea43e6';//去https://fundebug.com/申请key
 
 
 
-export const APK_DOWNLOAD = 'http://omzo595hi.bkt.clouddn.com/ionic2_tabs.apk';//android apk下载完整地址,用于android本地升级
-export const APP_DOWNLOAD = 'http://omzo595hi.bkt.clouddn.com/download.html';//app网页下载地址,用于ios升级或android本地升级失败
+export const APK_DOWNLOAD = 'http://www.netcall.cc:8096/netcall/n3suv/n3suv.apk';//android apk下载完整地址,用于android本地升级
+export const APP_DOWNLOAD = 'http://www.netcall.cc:8096/netcall/n3suv/app.html';//app网页下载地址,用于ios升级或android本地升级失败
 
 

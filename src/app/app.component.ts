@@ -33,14 +33,14 @@ export class MyApp {
               private platform: Platform,
               private Keyboard: Keyboard,
               private statusBar: StatusBar,
-              private splashScreen: SplashScreen,
+              //private splashScreen: SplashScreen,
               private toastCtrl: ToastController,
               private events: Events,
               public menu: MenuController,
               public storage: Storage,
               private nativeService: NativeService) {
 
-    if (window.cordova) {
+    /*if (window.cordova) {
       document.addEventListener("deviceready", () => {
         // retrieve the DOM element that had the ng-app attribute
         statusBar.styleLightContent();
@@ -64,24 +64,20 @@ export class MyApp {
       // 代码开始
       this.initializeApp();
 
-    }
-
-    // this.local=new Storage(localStorage);
-    // this.local.set('isStart',false);
-
-    // this.local.get('isStart').then((result)=>{
-    //   console.log('isStart:', result);
-    // })
+    }*/
 
 
-     this.storage.ready().then(() => {
 
-       this.storage.set('isStart', false);
+    this.initializeApp();
 
-       this.storage.get('isStart').then((val) => {
-         console.log('isStart:', val);
-       })
-     });
+    this.storage.ready().then(() => {
+
+      this.storage.set('isStart', false);
+
+      this.storage.get('isStart').then((val) => {
+        console.log('isStart:', val);
+      })
+    });
   }
 
 
@@ -95,6 +91,7 @@ export class MyApp {
         })
       }
 
+      this.statusBar.styleLightContent();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.nativeService.statusBarStyleDefault();     //this.statusBar.styleDefault();
@@ -160,11 +157,6 @@ export class MyApp {
     if (this.backButtonPressed) { //当触发标志为true时，即2秒内双击返回按键则退出APP
       this.platform.exitApp();
     } else {
-      // this.toastCtrl.create({
-      //   message: '再按一次退出应用',sss
-      //   duration: 2000,
-      //   position: 'top'
-      // }).present();
       this.nativeService.showToast('再按一次退出应用');
       this.backButtonPressed = true;
       setTimeout(() => this.backButtonPressed = false, 2000);//2秒内没有再次点击返回则将触发标志标记为false

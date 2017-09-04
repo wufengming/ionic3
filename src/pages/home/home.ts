@@ -4,7 +4,7 @@ import ECharts from 'echarts';
 //import { MapPage } from '../map-page/map-page';
 import {AutoFitLayout} from "../../components/auto-fit-layout/auto-fit-layout";
 import {ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject} from '@ionic-native/themeable-browser';
-import { BrowserServiceProvider } from '../../providers/browser-service/browser-service';
+import {BrowserServiceProvider} from '../../providers/browser-service/browser-service';
 
 @IonicPage({
   name: 'home'
@@ -19,6 +19,9 @@ export class HomePage {
   private ALL: string = "all";
   private name_data: any = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"];
   private value_data: any = [5, 20, 36, 10, 10, 20];
+
+  //ionic2-rating初始化的值
+  private rate: number = 3;
 
   hasmore = true;
   products: Array<any>;
@@ -37,6 +40,7 @@ export class HomePage {
               public navParams: NavParams) {
 
   }
+
   //页面
   ngOnInit() {
     console.log('ionViewDidLoad home');
@@ -149,29 +153,29 @@ export class HomePage {
   goBuy() {
 
     /*let options: ThemeableBrowserOptions = {
-      statusbar: {                //状态栏的颜色
-        color: '#f8285c'
-      },
-      toolbar: {                  //工具栏配置
-        height: 44,
-        color: '#f8285c'
-      },
-      title: {                    //标题的配置
-        color: '#ffffffff',
-        showPageTitle: true
-      },
-      backButton: {               //返回按钮配置
-        image: 'back',
-        imagePressed: 'back_pressed',
-        align: 'left',
-        event: 'backPressed'
-      },
-      backButtonCanClose: true
-    };
+     statusbar: {                //状态栏的颜色
+     color: '#f8285c'
+     },
+     toolbar: {                  //工具栏配置
+     height: 44,
+     color: '#f8285c'
+     },
+     title: {                    //标题的配置
+     color: '#ffffffff',
+     showPageTitle: true
+     },
+     backButton: {               //返回按钮配置
+     image: 'back',
+     imagePressed: 'back_pressed',
+     align: 'left',
+     event: 'backPressed'
+     },
+     backButtonCanClose: true
+     };
 
-    let themeableBrowser = new ThemeableBrowser();
-    let browser: ThemeableBrowserObject = themeableBrowser.create(this.url, '_blank', options);   //_self  页面弹出  _blank页面在框架内
-*/
+     let themeableBrowser = new ThemeableBrowser();
+     let browser: ThemeableBrowserObject = themeableBrowser.create(this.url, '_blank', options);   //_self  页面弹出  _blank页面在框架内
+     */
 
     let browser: ThemeableBrowserObject = new BrowserServiceProvider(this.url, [
       {
@@ -213,13 +217,23 @@ export class HomePage {
   /**
    * Ion-Multi-Picker 案例
    */
-  multiPicker(){
+  multiPicker() {
     this.navCtrl.push('multipicker');
   }
 
   //跳转到瀑布流图片
-  pageAbout(){
+  pageAbout() {
     this.navCtrl.push('about');
+  }
+
+
+  /**
+   * ionic2-rating 的change事件
+   * @param evn
+   */
+  onModelChange(evn:any){
+
+    console.log(evn);
   }
 
 }

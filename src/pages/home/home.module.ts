@@ -11,6 +11,7 @@ import { AutoFitLayout } from "../../components/auto-fit-layout/auto-fit-layout"
 //组件
 import { FlashCardComponent } from '../../components/flash-card/flash-card';
 import { IonProductsComponent } from '../../components/ion-products/ion-products';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 //服务
 //import { BrowserServiceProvider } from '../../providers/browser-service/browser-service';
@@ -25,7 +26,8 @@ import { IonProductsComponent } from '../../components/ion-products/ion-products
     IonProductsComponent
   ],
   imports: [
-    IonicPageModule.forChild(HomePage)
+    IonicPageModule.forChild(HomePage),
+    Ionic2RatingModule
     //MapPageModule,
     //FileUploadPageModule
   ],

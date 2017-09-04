@@ -50,6 +50,17 @@
       瀑布流图片
     </button>
   </p>
+  <div>
+    <rating [(ngModel)]="rate"
+            readOnly="false"
+            max="5"
+            emptyStarIconName="star-outline"
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+            (ngModelChange)="onModelChange($event)">
+    </rating>
+  </div>
 
   <h2 pefixHighlight>ECharts</h2>
   <div>{{ ALL| my:["Josh Morony","something"] }}</div>

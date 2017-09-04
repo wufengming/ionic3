@@ -98,7 +98,7 @@ export class Utils {
   }
 
   /**
-   * 每次调用sequence加1
+   * 每次调用sequence加1 ,序号
    * @type {()=>number}
    */
   getSequence = (function () {
@@ -135,7 +135,13 @@ export class Utils {
     return url.substring(0, index) + url.substring(index).replace(/\/\/*/g, '/');
   }
 
+  /***************************sessionStorage**************************************/
 
+  /**
+   * session 获取当前缓存的值
+   * @param key
+   * @returns {any}
+   */
   static sessionStorageGetItem(key: string) {
     let jsonString = sessionStorage.getItem(key);
     if (jsonString) {
@@ -144,15 +150,66 @@ export class Utils {
     return null;
   }
 
+  /**
+   * 设置session缓存
+   * @param key
+   * @param value
+   */
   static sessionStorageSetItem(key: string, value: any) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
+  /**
+   * 移除key对应的session缓存值
+   * @param key
+   */
   static sessionStorageRemoveItem(key: string) {
     sessionStorage.removeItem(key);
   }
 
+  /**
+   * 清楚session缓存
+   */
   static sessionStorageClear() {
     sessionStorage.clear();
+  }
+
+  /***************************localStorage**************************************/
+
+  /**
+   * local 获取当前缓存的值
+   * @param key
+   * @returns {any}
+   */
+  static localStorageGetItem(key: string) {
+    let jsonString = localStorage.getItem(key);
+    if (jsonString) {
+      return JSON.parse(jsonString);
+    }
+    return null;
+  }
+
+  /**
+   * 设置local缓存
+   * @param key
+   * @param value
+   */
+  static localStorageSetItem(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  /**
+   * 移除key对应的local缓存值
+   * @param key
+   */
+  static localStorageRemoveItem(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  /**
+   * 清楚local缓存
+   */
+  static localStorageClear() {
+    localStorage.clear();
   }
 }
