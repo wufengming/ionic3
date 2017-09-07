@@ -28,16 +28,21 @@ import {NativeService} from "../providers/NativeService";
 import {GlobalData} from "../providers/GlobalData";
 import {Utils} from "../providers/Utils";
 import {Logger} from "../providers/Logger";
+import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 
 //指令
 
-//fundebug
-import * as fundebug from "fundebug-javascript";
-import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 
 //常量
 import {ENABLE_FUNDEBUG, IS_DEBUG, FUNDEBUG_API_KEY, APPVERSION} from "../providers/Constants";
 
+//fundebug
+//import * as fundebug from "fundebug-javascript";
+
+//安装依赖:cnpm i fundebug-javascript --save
+//https://docs.fundebug.com/notifier/javascript/framework/ionic2.html
+declare var require: any;
+let fundebug: any = require("fundebug-javascript");
 
 fundebug.apikey = FUNDEBUG_API_KEY;
 fundebug.appversion = APPVERSION;   //应用版本
@@ -98,12 +103,13 @@ class FundebugErrorHandler implements ErrorHandler {
     ImagePicker,
     Network,
     AppMinimize,
+
+    {provide: ErrorHandler, useClass: FundebugErrorHandler},
+    //{ provide: ErrorHandler, useClass: IonicErrorHandler },
     LoginService,
     LoginHttpService,
     StorageService,
     NativeService,
-    {provide: ErrorHandler, useClass: FundebugErrorHandler},
-    //{ provide: ErrorHandler, useClass: IonicErrorHandler },
     TabsService,
     GlobalData,
     Utils,

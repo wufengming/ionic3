@@ -1,13 +1,9 @@
 import { Component, ViewChild, Host } from '@angular/core';
-import { Platform, Nav,IonicApp, ToastController, MenuController, Keyboard,Events } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-import {ENABLE_FUNDEBUG} from "../providers/Constants";
+import { Platform, Nav,IonicApp, ToastController, MenuController,ModalController, Keyboard,Events } from 'ionic-angular';
 import {NativeService} from "../providers/NativeService";
-//import { TabsPage } from '../pages/tabs/tabs';
-
-//import { StartPage } from '../pages/start/start';
+import {ENABLE_FUNDEBUG} from "../providers/Constants";
+import {GlobalData} from "../providers/GlobalData";
 
 /**
  * app.component.ts 应用程序根组件
@@ -17,97 +13,62 @@ import {NativeService} from "../providers/NativeService";
 
 declare const window: any;
 declare var fundebug;
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  backButtonPressed: boolean = false;  //用于判断返回键是否触发
   @ViewChild('myNav') nav: Nav;
+  backButtonPressed: boolean = false;  //用于判断返回键是否触发
+  rootPage: any = 'start';// 开始加载 启动页面的动画
 
-  // 开始加载 启动页面的动画
-  rootPage: any = 'start';
+
+
   pages: Array<{ title: string, component: any }>;
   local:Storage;
 
-  constructor(private ionicApp: IonicApp,
-              private platform: Platform,
-              private Keyboard: Keyboard,
-              private statusBar: StatusBar,
-              //private splashScreen: SplashScreen,
-              private toastCtrl: ToastController,
-              private events: Events,
-              public menu: MenuController,
+  constructor(private platform: Platform,
+              private ionicApp: IonicApp,
+              private keyboard: Keyboard,
               public storage: Storage,
+              private globalData: GlobalData,
+              private events: Events,
+              private toastCtrl: ToastController,
+              private modalCtrl: ModalController,
+              public menu: MenuController,
               private nativeService: NativeService) {
 
-    /*if (window.cordova) {
-      document.addEventListener("deviceready", () => {
-        // retrieve the DOM element that had the ng-app attribute
-        statusBar.styleLightContent();
-        //延迟隐藏闪屏 防止有白屏
-        window.setTimeout(() => {
-          splashScreen.hide();
-        }, 500);
-        // 代码开始
-        this.initializeApp();
-
-
-        if (platform.is("ios")) {
-          console.log('this is ios');
-        } else if (platform.is("android")) {
-          console.log('this is android');
-        }
-
-      }, false);
-    } else {
-      console.log('web 模式');
-      // 代码开始
-      this.initializeApp();
-
-    }*/
-
-
-
-    this.initializeApp();
-
-    this.storage.ready().then(() => {
-
-      this.storage.set('isStart', false);
-
-      this.storage.get('isStart').then((val) => {
-        console.log('isStart:', val);
-      })
-    });
-  }
-
-
-  //应用启动开始加载事件
-  initializeApp() {
-    this.platform.ready().then(() => {
+    platform.ready().then(() => {
 
       if (ENABLE_FUNDEBUG && this.nativeService.isMobile()) {//设置日志监控app的版本号
         this.nativeService.getVersionNumber().subscribe(version => {
           fundebug.appversion = version;
         })
       }
+      //this.helper.initJpush();//初始化极光推送
 
-      this.statusBar.styleLightContent();
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.nativeService.statusBarStyleDefault();     //this.statusBar.styleDefault();
-      this.nativeService.splashScreenHide();          //this.splashScreen.hide();
-      this.registerBackButtonAction();                //注册返回按键事件
+      this.storage.ready().then(() => {
 
-      this.assertNetwork();                           //检测网络
-      this.nativeService.detectionUpgrade();          //检测app是否升级
+        this.storage.set('isStart', false);
 
-      this.pages = [
-        { title: 'StartPage', component: 'start' },
-        { title: 'TabsPage', component: 'tabs' }
-      ];
+        this.storage.get('isStart').then((val) => {
+          console.log('isStart:', val);
+        })
+      });
+
+      this.nativeService.statusBarStyleDefault();
+      this.nativeService.splashScreenHide();        //隐藏启动页面
+      this.registerBackButtonAction();              //注册返回按键事件
+      this.assertNetwork();                         //检测网络
+      // this.helper.assertUpgrade().subscribe(res => {//检测app是否升级
+      //   res.update && this.nativeService.downloadApp();
+      // })
+
+      this.pages = [{ title: 'StartPage', component: 'start' },
+                    { title: 'TabsPage', component: 'tabs' }];
     });
-  }
 
+  }
 
   openPage(page) {
     // close the menu when clicking a link from the menu
@@ -116,6 +77,9 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  /**
+   * 检测网络方法
+   */
   assertNetwork() {
     if (!this.nativeService.isConnecting()) {
       this.toastCtrl.create({
@@ -125,30 +89,31 @@ export class MyApp {
       }).present();
     }
   }
-
+  /**
+   * 注册返回按键事件
+   */
   registerBackButtonAction() {
-    if (this.Keyboard.isOpen()) {//如果键盘开启则隐藏键盘
-      this.Keyboard.close();
+    if (!this.nativeService.isAndroid()) {
       return;
     }
     this.platform.registerBackButtonAction(() => {
-
-      if (this.Keyboard.isOpen()) { //如果键盘开启，则隐藏键盘
-        this.Keyboard.close();
+      if (this.keyboard.isOpen()) {//如果键盘开启则隐藏键盘
+        this.keyboard.close();
         return;
       }
       //如果想点击返回按钮隐藏toast或loading或Overlay就把下面加上
-      // this.ionicApp._toastPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive()
+      // this.ionicApp._toastPortal.getActive() ||this.ionicApp._loadingPortal.getActive()|| this.ionicApp._overlayPortal.getActive()
       let activePortal = this.ionicApp._modalPortal.getActive();
       if (activePortal) {
-        activePortal.dismiss().catch(() => { });
-        activePortal.onDidDismiss(() => { });
+        activePortal.dismiss();
+        activePortal.onDidDismiss(() => {});
         return;
       }
       let activeVC = this.nav.getActive();
       let tabs = activeVC.instance.tabs;
       let activeNav = tabs.getSelected();
-      return activeNav.canGoBack() ? activeNav.pop() : window['AppMinimize'].minimize(); //this.showExit()
+      return activeNav.canGoBack() ? activeNav.pop() : this.nativeService.minimize();//this.showExit()
+
     }, 1);
   }
 
