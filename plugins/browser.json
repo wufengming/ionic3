@@ -1,0 +1,64 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-themeablebrowser": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-appminimize": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.ionicdemo253775"
+        }
+    }
+}
