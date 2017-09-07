@@ -104,11 +104,8 @@ class FundebugErrorHandler implements ErrorHandler {
     Network,
     AppMinimize,
 
-<<<<<<< HEAD
-=======
     {provide: ErrorHandler, useClass: FundebugErrorHandler},
     //{ provide: ErrorHandler, useClass: IonicErrorHandler },
->>>>>>> 94045aed8b2c7aaf76c7a774b4fb4cf2cc8ac123
     LoginService,
     LoginHttpService,
     StorageService,
