@@ -98,16 +98,18 @@ class FundebugErrorHandler implements ErrorHandler {
     ImagePicker,
     Network,
     AppMinimize,
+
     LoginService,
     LoginHttpService,
     StorageService,
     NativeService,
-    {provide: ErrorHandler, useClass: FundebugErrorHandler},
-    //{ provide: ErrorHandler, useClass: IonicErrorHandler },
     TabsService,
     GlobalData,
     Utils,
-    Logger
+    Logger,
+    {provide: ErrorHandler, useClass: FundebugErrorHandler}
+    //{ provide: ErrorHandler, useClass: IonicErrorHandler },
+
   ]
 })
 export class AppModule {

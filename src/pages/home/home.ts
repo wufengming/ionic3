@@ -236,4 +236,8 @@ export class HomePage {
     console.log(evn);
   }
 
+  sliderTab(){
+    this.navCtrl.push('sliderTab');
+  }
+
 }
